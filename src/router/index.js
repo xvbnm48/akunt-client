@@ -14,7 +14,7 @@ const routes = [
   {
     path: "/edit/:id",
     name: "transaction.edit",
-    component: () => import("../views/transaction/Edit.vue"),
+    component: () => import("../views/transaction/edit.vue"),
   },
 ];
 

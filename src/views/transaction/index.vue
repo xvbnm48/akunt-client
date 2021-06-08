@@ -8,11 +8,74 @@
         >
           ADD</router-link
         >
+        <div class="card rounded shadow">
+          <div class="card-header">Transaction List</div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Amount</th>
+                  <th>Type</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="(transaction, index) in transactions.data"
+                  :key="index"
+                >
+                  <td>{{ transaction.title }}</td>
+                  <td>{{ transaction.amount }}</td>
+                  <td>{{ transaction.type }}</td>
+                  <td>
+                    <div class="btn-group">
+                      <router-link
+                        :to="{
+                          name: 'transaction.edit',
+                          params: { id: transaction.id },
+                        }"
+                        class="btn btn-sm btn-outline-info"
+                      >
+                        Edit
+                      </router-link>
+                      <button class="btn btn-sm btn-outline-danger">
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+import { onMounted, ref } from "vue";
+
+export default {
+  setup() {
+    //reactive state
+    let transactions = ref([]);
+    onMounted(() => {
+      //get data from api
+      axios
+        .get("http://127.0.0.1:8000/api/transaction")
+        .then((result) => {
+          transactions.value = result.data;
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    });
+    return {
+      transactions,
+    };
+  },
+};
 </script>
