@@ -6,7 +6,7 @@
           :to="{ name: 'transaction.index' }"
           class="btn btn-primary btn-sm rounded mb-3"
         >
-          BACK</router-link
+          BACK!</router-link
         >
         <div class="card rounded shadow">
           <div class="card-header">Edit Transaction</div>
