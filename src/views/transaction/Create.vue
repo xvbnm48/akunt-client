@@ -9,7 +9,7 @@
           BACK!</router-link
         >
         <div class="card rounded shadow">
-          <div class="card-header">Edit Transaction</div>
+          <div class="card-header">Create Transaction</div>
           <div class="card-body">
             <form @submit.prevent="store()">
               <div class="mb-3">
